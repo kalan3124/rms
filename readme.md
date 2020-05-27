@@ -27,7 +27,7 @@ Upload of project from scratch require git pull origin master.
 -------------------------------------------------------------------------------------------------
 1. Install backend depedencies and front end depedencies.
     ```
-    $ cd shl-backend
+    $ cd rsm
     $ composer install
     $ npm install
     ```
