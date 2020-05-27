@@ -1,0 +1,5 @@
+attendance
+
+{
+    "attendance":"{\"type\":2,\"lat\":\"223.23232\",\"lon\":\"223.23232\",\"time\":\"232323232323\",\"mileage\":\"13232\",\"batteryLevel\":\"12\",\"locationType\":\"1\"}"
+}

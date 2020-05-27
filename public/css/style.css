@@ -1,0 +1,17 @@
+.report-header{
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.25rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    padding-top:15px;
+  }
+
+.highlight th{
+  border: 2px solid #fff
+}
+
+.highlight td {
+  border: 2px solid #9e9e9e 
+}
+  

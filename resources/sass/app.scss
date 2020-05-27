@@ -1,0 +1,317 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: #f0f0f0;
+}
+
+table {
+    background: #ffffff;
+}
+
+.___snowStorm___ {
+    z-index: 1249!important;
+    text-shadow: 0px 0px 1px #0000FF;
+}
+
+
+@-webkit-keyframes bounce {
+    0%, 100% {
+        bottom: 60px;
+    }
+    40% {
+        bottom: 15px;
+    }
+}
+
+
+.santaImage{
+    position: fixed; 
+    bottom: 20px;
+    left:20px;
+    -webkit-transition: all ease 600ms;
+    -moz-transition: all ease 600ms;
+    -ms-transition: all ease 600ms;
+    -o-transition: all ease 600ms;
+    transition: all ease 600ms;
+    margin-left: 0; 
+    z-index: 1249!important;
+	background: -webkit-radial-gradient(65% 15%, circle, green, darkred);
+	background: -moz-radial-gradient(65% 15%, circle, green, darkred);
+	background: -o-radial-gradient(65% 15%, circle, green, darkred);
+	background: -ms-radial-gradient(65% 15%, circle, green, darkred);
+  -webkit-animation: bounce 0.6s infinite ease-in-out;
+    animation: bounce 1.5s infinite ease-in-out;
+
+}
+
+.santaImage:hover {
+    -webkit-animation-play-state: paused; 
+            animation-play-state: paused; 
+        -webkit-transform: rotate(720deg);
+        -moz-transform: rotate(720deg);
+        -ms-transform: rotate(720deg);
+        transform: rotate(720deg);
+        transform: rotate(720deg);
+}
+
+
+@import '~rc-calendar/assets/index.css';
+
+/* WebKit and Opera browsers */
+@-webkit-keyframes spinner {
+    from {
+        -webkit-transform: rotateY(0deg);
+    }
+
+    to {
+        -webkit-transform: rotateY(-360deg);
+    }
+}
+
+/* all other browsers */
+@keyframes spinner {
+    from {
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+
+    to {
+        -moz-transform: rotateY(-360deg);
+        -ms-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+}
+
+#stage {
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+    width: 100vw;
+    height: 100vh;
+    background: #275c87;
+    line-height: 100vh;
+    text-align: center;
+    z-index: 1350;
+    position: fixed;
+}
+
+#spinner {
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 3s;
+
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+    border: 2px solid #404040;
+    box-shadow: 2px 2px 8px #f0f0f0;
+    margin: auto
+}
+
+#nprogress {
+    pointer-events: none;
+}
+
+#nprogress .bar {
+    background: red;
+
+    position: fixed;
+    z-index: 2060;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    opacity: 1.0;
+
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 2060;
+    top: 15px;
+    right: 15px;
+}
+
+#nprogress .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+
+    border: solid 2px transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 50%;
+
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+    animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+    position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes nprogress-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+a:link,
+a:visited,
+a:active {
+    color: inherit;
+    text-decoration: none;
+    font-style: unset
+}
+
+.rc-calendar-body {
+    height: auto !important
+}
+
+// Scrollable models
+.mui-fixed[role="presentation"] {
+    overflow-y: auto;
+    box-sizing: content-box;
+}
+
+
+.download-table-xls-button {
+    align-items: center;
+    background-color: rgb(39, 92, 135);
+    border-bottom-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 17px;
+    border-bottom-right-radius: 17px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-image-outset: 0px;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(255, 255, 255);
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: rgb(255, 255, 255);
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: rgb(255, 255, 255);
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 500;
+    height: 34px;
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+    min-height: auto;
+    min-width: 34px;
+    outline-color: rgb(255, 255, 255);
+    outline-style: none;
+    outline-width: 0px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 0px;
+    position: relative;
+    text-align: center;
+    text-decoration-color: rgb(255, 255, 255);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-transform: uppercase;
+    transition-delay: 0s, 0s, 0s;
+    transition-duration: 0.25s, 0.25s, 0.25s;
+    transition-property: background-color, box-shadow, border;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    vertical-align: middle;
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-border-image: none;
+}
+
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+    .rc-calendar-cell{
+        display: block;
+    }
+
+    .rc-calendar table tr {
+        display: block;
+    }
+
+    .rc-calendar-column-header{
+        display: none;
+    }
+}

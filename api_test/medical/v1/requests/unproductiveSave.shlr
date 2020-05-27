@@ -1,0 +1,5 @@
+unproductive/save
+
+{
+    "jsonString":"{\"doc_chem_id\":3,\"visit_type_id\":0,\"is_sheduled\":0,\"shedule_id\":3,\"unproductive_reason_id\":3,\"battery_level\":98,\"lat\":6.8989109,\"lon\":79.9166096,\"time\":1551098000154,\"visit_place_id\":0}"
+}

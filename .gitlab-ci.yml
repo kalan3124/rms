@@ -1,0 +1,138 @@
+build:back_end_test:
+    image: php:7-fpm
+    variables:
+        MYSQL_DATABASE: 'homesteed'
+        MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+        MYSQL_USER: 'root'
+        MYSQL_PASSWORD: ''
+    tags:
+        - live
+    script:
+        - bash gitlab-ci.sh > /dev/null
+        - curl -sS https://getcomposer.org/installer | php
+        - php composer.phar install
+        - cp .env.gitlab-ci-test .env
+        - sed -i "/^GIT_LAB_LAST_JOB_ID/c\GIT_LAB_LAST_JOB_ID=$CI_JOB_ID" .env
+        - sed -i "/^DB_USERNAME/c\DB_USERNAME=$db_user" .env
+        - sed -i "/^DB_PASSWORD/c\DB_PASSWORD=$db_pass" .env
+        - sed -i "/^MAIL_HOST/c\MAIL_HOST=$MAIL_HOST" .env
+        - sed -i "/^MAIL_PORT/c\MAIL_PORT=$MAIL_PORT" .env
+        - sed -i "/^MAIL_USERNAME/c\MAIL_USERNAME=$MAIL_USERNAME" .env
+        - sed -i "/^MAIL_PASSWORD/c\MAIL_PASSWORD=$MAIL_PASSWORD" .env
+        - sed -i "/^MAIL_ENCRYPTION/c\MAIL_ENCRYPTION=$MAIL_ENCRYPTION" .env
+        - cat .env
+        - php artisan key:generate
+        - "php artisan config:cache"
+        - php artisan migrate
+        - php artisan migrate --path="database/migrations/*/"
+        - rm -r /var/www/healthcare-test/app/*
+        - rm -r /var/www/healthcare-test/routes/*
+        - rm -r /var/www/healthcare-test/config/*
+        - cp -r app/* /var/www/healthcare-test/app
+        - cp -r routes/* /var/www/healthcare-test/routes
+        - cp -r bootstrap/* /var/www/healthcare-test/bootstrap
+        - cp -r config/* /var/www/healthcare-test/config
+        - cp -r vendor/* /var/www/healthcare-test/vendor
+        - cp -r storage/* /var/www/healthcare-test/storage
+        - cp -r resources/views/* /var/www/healthcare-test/resources/views
+        - cp -r public/images/* /var/www/healthcare-test/public/images
+        - cp .env /var/www/healthcare-test
+        - cd /var/www/healthcare-test
+        - "composer dumpautoload"
+        - "php artisan view:clear"
+        - "php artisan clear-compiled"
+        - "php artisan cache:clear"
+        - "php artisan config:cache"
+        - "php artisan queue:restart"
+        - chmod -R 775 /var/www/healthcare-test
+        - chmod -R 777 /var/www/healthcare-test/storage
+        - "php artisan storage:link"
+    services:
+        - mysql:5.7
+
+build:front_end_test:
+    image: node:latest
+    tags:
+        - live
+    script:
+        - rm -rf node_modules
+        - rm -rf package-lock.json yarn.lock
+        - npm cache clear --force
+        - npm install
+        - npm install cross-env
+        - "rm -rf ./public/js/*"
+        - cp ./resources/js/constants/configGitlabCITest.js ./resources/js/constants/config.js
+        - cp ./webpack-test.mix.js ./webpack.mix.js
+        - npm run dev
+        - cp -r ./public/* /var/www/healthcare-test/public
+        - "chmod -R 777 ./public"
+
+build:back_end:
+    image: php:7-fpm
+    variables:
+        MYSQL_DATABASE: 'homesteed'
+        MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+        MYSQL_USER: 'root'
+        MYSQL_PASSWORD: ''
+    tags:
+        - live
+    script:
+        - bash gitlab-ci.sh > /dev/null
+        - curl -sS https://getcomposer.org/installer | php
+        - php composer.phar install
+        - cp .env.gitlab-ci .env
+        - sed -i "/^GIT_LAB_LAST_JOB_ID/c\GIT_LAB_LAST_JOB_ID=$CI_JOB_ID" .env
+        - sed -i "/^DB_USERNAME/c\DB_USERNAME=$db_user" .env
+        - sed -i "/^DB_PASSWORD/c\DB_PASSWORD=$db_pass" .env
+        - sed -i "/^MAIL_HOST/c\MAIL_HOST=$MAIL_HOST" .env
+        - sed -i "/^MAIL_PORT/c\MAIL_PORT=$MAIL_PORT" .env
+        - sed -i "/^MAIL_USERNAME/c\MAIL_USERNAME=$MAIL_USERNAME" .env
+        - sed -i "/^MAIL_PASSWORD/c\MAIL_PASSWORD=$MAIL_PASSWORD" .env
+        - sed -i "/^MAIL_ENCRYPTION/c\MAIL_ENCRYPTION=$MAIL_ENCRYPTION" .env
+        - php artisan key:generate
+        - "php artisan config:cache"
+        - php artisan migrate
+        - php artisan migrate --path="database/migrations/*/"
+        - rm -r /var/www/healthcare/app/*
+        - rm -r /var/www/healthcare/routes/*
+        - rm -r /var/www/healthcare/config/*
+        - cp -r app/* /var/www/healthcare/app
+        - cp -r routes/* /var/www/healthcare/routes
+        - cp -r bootstrap/* /var/www/healthcare/bootstrap
+        - cp -r config/* /var/www/healthcare/config
+        - cp -r vendor/* /var/www/healthcare/vendor
+        - cp -r storage/* /var/www/healthcare/storage
+        - cp -r resources/views/* /var/www/healthcare/resources/views
+        - cp -r public/images/* /var/www/healthcare/public/images
+        - cp .env /var/www/healthcare
+        - cd /var/www/healthcare
+        - "composer dumpautoload"
+        - "php artisan view:clear"
+        - "php artisan clear-compiled"
+        - "php artisan cache:clear"
+        - "php artisan config:cache"
+        - "php artisan storage:link"
+        - chmod -R 775 /var/www/healthcare
+        - chmod -R 777 /var/www/healthcare/storage
+        - "supervisorctl restart all"
+        - "php artisan queue:restart"
+    services:
+        - mysql:5.7
+    when: manual
+
+build:front_end:
+    image: node:latest
+    tags:
+        - live
+    script:
+        - rm -rf node_modules
+        - rm -rf package-lock.json yarn.lock
+        - npm cache clear --force
+        - npm install
+        - npm install cross-env
+        - "rm -rf ./public/js/*"
+        - cp ./resources/js/constants/configGitlabCI.js ./resources/js/constants/config.js
+        - npm run production
+        - cp -r public/* /var/www/healthcare/public
+        - "chmod -R 777 ./public"
+    when: manual
