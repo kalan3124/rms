@@ -178,7 +178,7 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 1
     },
     listItem: {
-        background: '#134f5c',
+        background: '#16ccab',
         padding: theme.spacing.unit,
         paddingLeft: theme.spacing.unit * 2,
         borderTop: 'solid 2px #000'
@@ -362,13 +362,14 @@ class DashBoard extends Component {
 
         const { classes, items } = this.props;
         const { type } = this.state;
+        console.log(items)
 
         let howManySections = 0;
 
         if(items['sales']&&items['sales'].length){
             howManySections++;
         }
-        if(items['medical']&&  items['medical'].length){
+        if(items['main']&&  items['main'].length){
             howManySections++;
         }
         if(items['common']&&  items['common'].length){
@@ -379,19 +380,19 @@ class DashBoard extends Component {
             <Layout className={classes.background}>
                 <Drawer classes={{ paper: classes.drawer }} variant="permanent" open>
                     <List dense>
-                        <DrawerItem classes={classes} onCollapse={this.handleCollapse('sales')} open={type=='sales'||howManySections==1} title="Sales" items={items['sales']} />
-                        <DrawerItem classes={classes} onCollapse={this.handleCollapse('medical')} open={type=='medical'||howManySections==1} title="Medical" items={items['medical']} />
+                        {/* <DrawerItem classes={classes} onCollapse={this.handleCollapse('sales')} open={type=='sales'||howManySections==1} title="Sales" items={items['sales']} /> */}
+                        <DrawerItem classes={classes} onCollapse={this.handleCollapse('main')} open={type=='main'||howManySections==1} title="Main" items={items['main']} />
                         <DrawerItem classes={classes} onCollapse={this.handleCollapse('common')} open={type=='common'||howManySections==1} title="Common" items={items['common']} />
-                        <DrawerItem classes={classes} onCollapse={this.handleCollapse('distributor')} open={type=='distributor'||howManySections==1} title="Distributor" items={items['distributor']} />
+                        {/* <DrawerItem classes={classes} onCollapse={this.handleCollapse('distributor')} open={type=='distributor'||howManySections==1} title="Distributor" items={items['distributor']} /> */}
                     </List>
                 </Drawer>
                 <Grid container>
                     {
-                        items['medical'].length ?
+                        items['main'].length ?
                             <Grid md={6} className={classes.padding} item>
-                                <Typography variant="h5" align="center">Medical</Typography>
+                                <Typography variant="h5" align="center">Dashboard</Typography>
                                 {
-                                    items['medical'].map((mainItem, i) => (
+                                    items['main'].map((mainItem, i) => (
                                         <MainCategory key={i} title={mainItem.title} items={mainItem.items} />
                                     ))
                                 }
@@ -399,20 +400,20 @@ class DashBoard extends Component {
                             : null
                     }
                     <Grid md={6} className={classes.padding} item>
-                        {  items['sales'].length ?[
+                        {/* {  items['sales'].length ?[
                             <Typography variant="h5" key={-1} align="center">Sales</Typography>,
                             items['sales'].map((mainItem, i) => (
                                 <MainCategory key={i} title={mainItem.title} items={mainItem.items} />
                             ))
-                        ]:null}
-                        {
+                        ]:null} */}
+                        {/* {
                         items['distributor'].length ?[
                             <Typography variant="h5" className={classes.margin} key={-1} align="center">Distributor</Typography>,
                             items['distributor'].map((mainItem, i) => (
                                 <MainCategory key={i} title={mainItem.title} items={mainItem.items} />
                             ))
                         ]:null
-                        }
+                        } */}
                     </Grid>
                     {
                         items['common'].length ?

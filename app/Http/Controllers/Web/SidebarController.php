@@ -79,7 +79,7 @@ class SidebarController extends Controller
         ];
 
         foreach ($menu as $sectionId => $section) {
-            
+
             foreach($section as $subMenuId=> $subMenu){
                 $permission = $userPermissions->firstWhere('main',$sectionId.'.'.$subMenuId);
 
@@ -110,7 +110,7 @@ class SidebarController extends Controller
                 "items"=>[
                 ]
             ];
-        
+
 
         return response()->json($filteredMenu);
     }
@@ -127,23 +127,23 @@ class SidebarController extends Controller
 
         $formatedMenu = [
             'sales'=>[],
-            'medical'=>[],
+            'main'=>[],
             'common'=>[]
         ];
 
         $userPermissions = $this->getPermissions();
 
         foreach ($mainMenu as $sectionId => $sectionMenu) {
-           
+
             foreach ($sectionMenu as $menu) {
-                
+
                 $formatedItems = [];
 
                 foreach ($menu['items'] as $item ) {
                     $explodedQuery = explode('.',$item['item']);
 
                     $allPermissions = $userPermissions->where('main',$sectionId.'.'.$explodedQuery[0])->firstWhere('all',1);
-                
+
                     $sectionsPermission = true;
 
                     if(isset($explodedQuery[1])){

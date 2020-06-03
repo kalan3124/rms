@@ -95,7 +95,7 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 1
     },
     listItem: {
-        background: '#134f5c',
+        background: '#16ccab',
         padding: theme.spacing.unit,
         paddingLeft: theme.spacing.unit * 2,
         borderTop: 'solid 2px #000'
@@ -117,7 +117,7 @@ class Sidebar extends Component {
 
     componentDidMount() {
         const { match } = this.props;
-        
+
         if(match.path.slice(0,12)=='/:type/:menu')
             this.handleSidebarChange(match.params.type,match.params.menu);
         else if(match.path=='/')
@@ -137,7 +137,7 @@ class Sidebar extends Component {
     handleToggleSection(id, expanded) {
         const { dispatch } = this.props;
 
-        if (expanded) {     
+        if (expanded) {
             dispatch(collapseSection(id));
         } else {
             dispatch(expandSection(id));

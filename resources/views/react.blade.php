@@ -44,7 +44,7 @@ Are you reading our source codes?
     <body>
 
         <div id="stage">
-            <img id="spinner" src="{{ url('images/logo.jpg') }}" />
+            <img id="spinner" src="{{ url('images/fatboysnew.png') }}" />
         </div>
         <div id="root">
         </div>

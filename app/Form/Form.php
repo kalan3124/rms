@@ -103,6 +103,7 @@ class Form extends HasPrivileges {
         foreach ($permissions as $key => $permission) {
             if($permission){
                 $exploded = explode('.',$permission);
+                return $exploded;
 
                 if(count($exploded)==2){
                     $menu = $subMenu[$exploded[0]][$exploded[1]];

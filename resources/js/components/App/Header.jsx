@@ -24,7 +24,7 @@ const styles = theme => ({
         flexGrow: 1
     },
     whiteBackground: {
-        background: "#fff",
+        background: "#16ccab",
         color: theme.palette.common.black
     },
     grow: {
@@ -46,7 +46,7 @@ const styles = theme => ({
     header: {
         color: theme.palette.common.white,
         zIndex: 1250,
-        background: "#134f5c",
+        background: "#16ccab",
         marginLeft: 0,
         paddingLeft: 0
     },
@@ -72,8 +72,7 @@ const styles = theme => ({
         textShadow: "unset",
         color: theme.palette.common.white
     },
-    dashboardIcon: {
-    }
+    dashboardIcon: {}
 });
 
 const mapStateToProps = state => ({
@@ -134,21 +133,23 @@ class Header extends Component {
                             variant="dense"
                         >
                             <IconButton onClick={this.handleClickLogo}>
-                                <DashBoardIcon
-                                    color="primary"
-                                    className={classes.dashboardIcon}
-                                />
+                                <Link to="/" className={classes.logoContainer}>
+                                    <DashBoardIcon
+                                        color="primary"
+                                        className={classes.dashboardIcon}
+                                    />
+                                </Link>
                             </IconButton>
                             {loading ? (
                                 <CircularProgress />
                             ) : (
-                                    <Link to="/" className={classes.logoContainer}>
-                                        <img
-                                            className={classes.headerHeight}
-                                            src={APP_URL + "images/logo.jpg"}
-                                        />
-                                    </Link>
-                                )}
+                                <Link to="/" className={classes.logoContainer}>
+                                    <img
+                                        className={classes.headerHeight}
+                                        src={APP_URL + "images/fatboysnew.png"}
+                                    />
+                                </Link>
+                            )}
                         </Toolbar>
                         <Typography
                             align="center"
@@ -209,9 +210,9 @@ class Header extends Component {
                                 {/* <MenuItem onClick={this.handleClose}>
                                     My account
                                 </MenuItem> */}
-                                <MenuItem onClick={this.handleChangePassClick}>
+                                {/* <MenuItem onClick={this.handleChangePassClick}>
                                     My account
-                                </MenuItem>
+                                </MenuItem> */}
                                 <MenuItem
                                     onClick={this.handleLogoutClick.bind(this)}
                                 >
@@ -224,7 +225,6 @@ class Header extends Component {
             </div>
         );
     }
-
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(withRouter(Header)));

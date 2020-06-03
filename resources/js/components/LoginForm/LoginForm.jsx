@@ -61,7 +61,7 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
-    background: theme.palette.primary.main
+    background: '#16ccab'
   },
 })
 
@@ -171,7 +171,7 @@ class LoginForm extends Component {
             {loading ?
               <CircularProgress />
               :
-              <img className={classes.avatarImage} src={APP_URL + 'images/logo.jpg'} />
+              <img className={classes.avatarImage} src={APP_URL + 'images/fatboys.jpg'} />
             }
           </Avatar>
           <Typography component="h1" variant="h5">

@@ -2,7 +2,7 @@ import { DASHBOARD_LOADED } from "../constants/actionTypes";
 
 const initialState = {
     items:{
-        medical:[],
+        main:[],
         sales:[],
         common:[],
         distributor:[]
